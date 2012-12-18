@@ -13,4 +13,17 @@
   <packaging>jar</packaging>
   <version>0.9-SNAPSHOT</version>
   <name>Nokia MIDlet RD Signer Engine</name>
+
+  <dependencies>
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>4.2.2</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpmime</artifactId>
+          <version>4.2.2</version>
+      </dependency>
+  </dependencies>
 </project>
