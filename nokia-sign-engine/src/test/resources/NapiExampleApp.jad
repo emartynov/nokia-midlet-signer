@@ -1,0 +1,10 @@
+MIDlet-1: NapiExampleApp, ,com.nokia.notifications.example.ui.NapiExample
+MIDlet-Name: NapiExampleApp
+MIDlet-Icon: /napiexample.png
+MIDlet-Version: 1.3.5
+MIDlet-Vendor: Nokia
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Permissions: com.nokia.mid.s40.io.Connector.localmsg,javax.microedition.io.Connector.file.read,javax.microedition.io.Connector.file.write,javax.microedition.io.Connector.http
+MIDlet-Jar-URL: NapiExampleApp.jar
+MIDlet-Jar-Size: 117952

@@ -2,18 +2,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
     <properties>
-        <project.version>0.9-SNAPSHOT</project.version>
+        <project.version>0.9</project.version>
         <httpclient.version>4.2.2</httpclient.version>
     </properties>
 
     <parent>
         <groupId>com.ebuddy.nokia.s40</groupId>
-        <artifactId>midlet-signer</artifactId>
+        <artifactId>nokia-midlet-signer</artifactId>
         <version>${project.version}</version>
     </parent>
 
   <groupId>com.ebuddy.nokia.s40</groupId>
-  <artifactId>engine</artifactId>
+  <artifactId>nokia-sign-engine</artifactId>
   <packaging>jar</packaging>
   <version>${project.version}</version>
   <name>Nokia MIDlet RD Signer Engine</name>

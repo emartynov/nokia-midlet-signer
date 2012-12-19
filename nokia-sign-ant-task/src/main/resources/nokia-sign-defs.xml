@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<antlib>
+    <taskdef name="nokiaSign" classname="com.ebuddy.nokia.s40.ant.NokiaMidletSignTask" />
+    <typedef name="bundle" classname="com.ebuddy.nokia.s40.ant.SignBundleType" />
+</antlib>

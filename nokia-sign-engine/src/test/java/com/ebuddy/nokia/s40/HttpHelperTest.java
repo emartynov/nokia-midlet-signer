@@ -75,8 +75,8 @@ public class HttpHelperTest {
     @Test
     public void postFilesToNokia() throws IOException, URISyntaxException {
         String url = "url";
-        String jad = "ebuddy_nna_medium.jad";
-        String jar = "ebuddy_nna_medium.jar1";
+        String jad = "NapiExampleApp.jad";
+        String jar = "NapiExampleApp.jar";
 
         http.postFilesToPage(url, getUploadFiles(jad, jar));
 

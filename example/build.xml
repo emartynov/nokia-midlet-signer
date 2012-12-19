@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<project name="example" default="sign" basedir=".">
+    <taskdef resource="nokia-sign-defs.xml" classpath="ant/nokia-sign-ant-task-0.9-jar-with-dependencies.jar"/>
+
+    <target name="sign">
+        <nokiaSign host="oujava.vip.wipsl.com" username="<your username>" password="<your password>" retrycount="3">
+            <bundle jad="${basedir}\NapiExampleApp.jad" jar="${basedir}\NapiExampleApp.jar" keepunsignedjad="true"/>
+        </nokiaSign>
+    </target>
+</project>
