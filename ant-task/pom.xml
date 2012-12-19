@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <project.version>0.9-SNAPSHOT</project.version>
+        <ant.version>1.7.0</ant.version>
+    </properties>
+
+    <parent>
+        <groupId>com.ebuddy.nokia.s40</groupId>
+        <artifactId>midlet-signer</artifactId>
+        <version>${project.version}</version>
+    </parent>
+
+    <groupId>com.ebuddy.nokia.s40</groupId>
+    <artifactId>ant-task</artifactId>
+    <packaging>jar</packaging>
+    <version>${project.version}</version>
+    <name>Nokia MIDlet RD Signer Ant Task</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>${ant.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ebuddy.nokia.s40</groupId>
+            <artifactId>engine</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

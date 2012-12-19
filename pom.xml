@@ -5,7 +5,7 @@
 
     <groupId>com.ebuddy.nokia.s40</groupId>
     <artifactId>midlet-signer</artifactId>
-    <version>0.9-SNAPSHOT</version>
+    <version>${project.version}</version>
     <packaging>pom</packaging>
 
     <name>Nokia MIDlet RD Signer Parent</name>
@@ -14,18 +14,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.version>0.9-SNAPSHOT</project.version>
     </properties>
 
     <modules>
         <module>engine</module>
+        <module>ant-task</module>
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>com.sun.codemodel</groupId>
-            <artifactId>codemodel</artifactId>
-            <version>2.4.1</version>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -43,18 +40,6 @@
             <artifactId>fest-assert</artifactId>
             <version>1.4</version>
         </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-module-junit4</artifactId>
-            <version>1.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
-            <version>1.5</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -63,15 +48,10 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.2.1</version>
+                    <version>2.0</version>
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>jarjar-maven-plugin</artifactId>
-                    <version>1.3</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -85,7 +65,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.2.1</version>
+                    <version>2.2-beta-5</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
@@ -102,7 +82,7 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-    </build>
 
+    </build>
 
 </project>

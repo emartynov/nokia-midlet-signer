@@ -35,14 +35,17 @@ public class NokiaSigner {
         http.setAuth(this.host, username, password);
     }
 
-    public void sign(String jadFile, String jarFile) throws Exception {
+    public void sign(String jadFile, String jarFile) throws IOException, SigningException {
         try {
             login();
             uploadFiles(jadFile, jarFile);
             postPermissions();
             choseDomain();
             downloadAndSaveJad(jadFile);
-        } catch (Exception e) {
+        } catch (IOException e) {
+            System.out.println(e.toString());
+            throw e;
+        } catch (SigningException e) {
             System.out.println(e.toString());
             throw e;
         } finally {
