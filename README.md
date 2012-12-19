@@ -32,7 +32,7 @@ Please take a look to `example` folder
 * Download (or build) engine jar. Use jar with dependencies if you don't have `org.apache.HttpClient` in your classpath
 * Run jar file with parameters:
         
-        java -jar nokia-engine-0.9-jar-with-dependencies.jar <host> <username> <password> <jad> <jar>
+        java -jar nokia-sign-engine-0.9-jar-with-dependencies.jar <host> <username> <password> <jad> <jar>
 
 ## TODO
 * Use better parameters specifying for engine call
