@@ -5,8 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import java.io.IOException;
-
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
@@ -38,21 +36,21 @@ public class NokiaSignerTest {
     }
 
     @Test
-    public void closeResourcesAfter() throws IOException {
+    public void closeResourcesAfter() throws Exception {
         signer.sign(JAD, JAR);
 
         verify(http).shutdown();
     }
 
     @Test
-    public void requestedLoginPage() throws IOException {
+    public void requestedLoginPage() throws Exception {
         signer.sign(JAD, JAR);
 
         verify(http).requestPage(signer.getSignURL());
     }
 
     @Test
-    public void uploadFilesForSigning() throws IOException {
+    public void uploadFilesForSigning() throws Exception {
         signer.sign(JAD, JAR);
 
         ArgumentCaptor<UploadFile[]> captor = ArgumentCaptor.forClass(UploadFile[].class);
@@ -70,21 +68,21 @@ public class NokiaSignerTest {
     }
 
     @Test
-    public void setPermissions() throws IOException {
+    public void setPermissions() throws Exception {
         signer.sign(JAD, JAR);
 
         verify(http).postKeyValue(signer.getSignURL(), NokiaSigner.SUBMIT, NokiaSigner.KEEP_PERMISSIONS);
     }
 
     @Test
-    public void setDomain() throws IOException {
+    public void setDomain() throws Exception {
         signer.sign(JAD, JAR);
 
         verify(http).postKeyValue(signer.getSignURL(), NokiaSigner.DOMAIN, NokiaSigner.MANUFACTURER_DOMAIN);
     }
 
     @Test
-    public void requestAndDownload() throws IOException {
+    public void requestAndDownload() throws Exception {
         signer.sign(JAD, JAR);
 
         verify(http).requestAndSaveFile(anyString(), eq(JAD));
