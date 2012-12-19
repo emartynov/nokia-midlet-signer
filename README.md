@@ -13,11 +13,11 @@ Please contact Nokia to get details about access to this signing
 
 ### Ant task
 
-* Download (or build) and add task definition to your ant project
+* Download (or build) ant task jar and add task definition to your ant project:
 
         <taskdef resource="nokia-sign-defs.xml" classpath="ant/nokia-sign-ant-task-0.9-jar-with-dependencies.jar"/>
 
-* Add signing task to your project
+* Add signing task to your project:
 
         <target name="sign">
             <nokiaSign host="<signing host>" username="<your username>" password="<your password>" retrycount="3">
@@ -28,3 +28,12 @@ Please contact Nokia to get details about access to this signing
 Please take a look to `example` folder
 
 ### Raw Java
+
+* Download (or build) engine jar. Use jar with dependencies if you don't have `org.apache.HttpClient` in your classpath
+* Run jar file with parameters:
+        
+        java -jar nokia-engine-0.9-jar-with-dependencies.jar <host> <username> <password> <jad> <jar>
+
+## TODO
+* Use better parameters specifying for engine call
+* Create maven plugin for signing automation
