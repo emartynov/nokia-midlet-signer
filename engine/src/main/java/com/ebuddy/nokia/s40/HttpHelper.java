@@ -95,7 +95,7 @@ public class HttpHelper {
         client.execute(post, new BasicResponseHandler());
     }
 
-    public void requestAndSaveFile(String url, String fileName) throws IOException {
+    public void requestAndSaveFile(String url, String fileName) throws IOException, SigningException {
         HttpGet httpGet = new HttpGet(url);
 
         httpGet.getParams().setParameter(
@@ -105,7 +105,7 @@ public class HttpHelper {
         try {
             HttpResponse response = client.execute(httpGet);
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
-                throw new IOException(response.getStatusLine().toString());
+                throw new SigningException(response.getStatusLine().toString());
             entity = response.getEntity();
 
             writeFile(fileName, entity);

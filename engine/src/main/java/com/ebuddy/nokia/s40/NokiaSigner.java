@@ -2,8 +2,6 @@ package com.ebuddy.nokia.s40;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 /**
  *
@@ -37,21 +35,22 @@ public class NokiaSigner {
         http.setAuth(this.host, username, password);
     }
 
-    public void sign(String jadFile, String jarFile) {
+    public void sign(String jadFile, String jarFile) throws Exception {
         try {
             login();
             uploadFiles(jadFile, jarFile);
             postPermissions();
             choseDomain();
             downloadAndSaveJad(jadFile);
-        } catch (IOException ignored) {
-            System.out.println(ignored.toString());
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            throw e;
         } finally {
             http.shutdown();
         }
     }
 
-    private void downloadAndSaveJad(String jadFileName) throws IOException {
+    private void downloadAndSaveJad(String jadFileName) throws IOException, SigningException {
         http.requestAndSaveFile(makeDownloadURL(getFileName(jadFileName)), jadFileName);
     }
 
@@ -99,20 +98,17 @@ public class NokiaSigner {
         http.requestPage(getSignURL());
     }
 
-    public static void main(String[] args) throws URISyntaxException {
-        String host = null;
-        String username = null;
-        String password = null;
+    public static void main(String[] args) throws Exception {
+        String host = args[0];
+        String username = args[1];
+        String password = args[2];
 
         NokiaSigner signer = new NokiaSigner(host, username, password);
 
 
-        signer.sign(findResourceFile("ebuddy_nna_medium.jad"),
-                findResourceFile("ebuddy_nna_medium.jar1"));
-    }
+        String jadFileName = args[3];
+        String jarFileName = args[4];
 
-    private static String findResourceFile(String filename) throws URISyntaxException {
-        URL myTestURL = ClassLoader.getSystemResource(filename);
-        return new File(myTestURL.toURI()).getAbsolutePath();
+        signer.sign(jadFileName, jarFileName);
     }
 }
