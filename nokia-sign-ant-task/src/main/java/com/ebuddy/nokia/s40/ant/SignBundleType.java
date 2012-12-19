@@ -13,7 +13,7 @@ import java.io.IOException;
 public class SignBundleType extends DataType {
     private String jadFilename;
     private String jarFilename;
-    private boolean keepUnsignedJad;
+    boolean keepUnsignedJad;
 
     public void checkArguments() {
         if (jadFilename == null)

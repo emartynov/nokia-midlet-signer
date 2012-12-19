@@ -1,6 +1,7 @@
 package com.ebuddy.nokia.s40.ant;
 
 import com.ebuddy.nokia.s40.NokiaSigner;
+import com.ebuddy.nokia.s40.SigningException;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 
@@ -12,11 +13,11 @@ import java.util.List;
  * User: Eugen
  */
 public class NokiaMidletSignTask extends Task {
-    private String host;
-    private String username;
-    private String password;
+    String host;
+    String username;
+    String password;
 
-    private int retryCount = 1;
+    int retryCount = 1;
 
     private List<SignBundleType> signBundleTypeList = new ArrayList<SignBundleType>();
 
@@ -26,6 +27,8 @@ public class NokiaMidletSignTask extends Task {
         checkArgument(username, "Username");
         checkArgument(password, "Password");
 
+        checkRetryCount();
+
         NokiaSigner signer = new NokiaSigner(host, username, password);
 
         checkAppsSize();
@@ -33,6 +36,14 @@ public class NokiaMidletSignTask extends Task {
         for (SignBundleType signBundleType : signBundleTypeList) {
             sign(signBundleType, signer);
         }
+    }
+
+    private void checkRetryCount() {
+        if (retryCount == 0)
+            retryCount = 1;
+
+        if (retryCount < 0)
+            throw new BuildException("Invalid retry count " + retryCount);
     }
 
     private void sign(SignBundleType signBundleType, NokiaSigner signer) {
@@ -51,12 +62,18 @@ public class NokiaMidletSignTask extends Task {
                 log("Signing: " + signBundleType.getJadFilename());
 
                 signer.sign(signBundleType.getJadFilename(), signBundleType.getJarFilename());
-            } catch (Exception ignored) {
 
-            } finally {
+                log("Successfully signed!");
+                break;
+            } catch (SigningException e) {
                 attemptCount++;
+            } catch (IOException e) {
+                throw new BuildException("Sign can't sign", e);
             }
         }
+
+        if (attemptCount == retryCount)
+            throw new BuildException("Tried " + retryCount + " retries to sign but failed");
     }
 
     private void checkAppsSize() {
@@ -87,5 +104,9 @@ public class NokiaMidletSignTask extends Task {
 
     public void setRetryCount(int retryCount) {
         this.retryCount = retryCount;
+    }
+
+    List<SignBundleType> getBundlesList() {
+        return signBundleTypeList;
     }
 }
