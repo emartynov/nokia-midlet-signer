@@ -25,7 +25,7 @@ Please contact Nokia to get details about access to this signing
             </nokiaSign>
         </target>
 
-Please take a look to `example` folder
+Please take a look to [`example`][1] folder
 
 ### Raw Java
 
@@ -37,3 +37,5 @@ Please take a look to `example` folder
 ## TODO
 * Use better parameters specifying for engine call
 * Create maven plugin for signing automation
+
+  [1]: https://github.com/emartynov/nokia-midlet-signer/tree/master/example
