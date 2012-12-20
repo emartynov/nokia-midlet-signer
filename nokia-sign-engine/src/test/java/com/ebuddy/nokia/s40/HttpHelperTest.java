@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.params.ClientPNames;
 import org.apache.http.client.params.CookiePolicy;
+import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpParams;
@@ -36,12 +37,16 @@ public class HttpHelperTest {
 
     private DefaultHttpClient client = mock(DefaultHttpClient.class);
     private CredentialsProvider credentials = mock(CredentialsProvider.class);
+    private ClientConnectionManager connections = mock(ClientConnectionManager.class);
+
     private HttpParams params = mock(HttpParams.class);
 
     @Before
     public void setUp() throws Exception {
         when(client.getCredentialsProvider()).thenReturn(credentials);
         when(client.getParams()).thenReturn(params);
+        when(client.getConnectionManager()).thenReturn(connections);
+
         http = new HttpHelper(client);
     }
 
@@ -73,7 +78,7 @@ public class HttpHelperTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void postFilesToNokia() throws IOException, URISyntaxException {
+    public void  postFilesToNokia() throws IOException, URISyntaxException {
         String url = "url";
         String jad = "NapiExampleApp.jad";
         String jar = "NapiExampleApp.jar";
@@ -88,7 +93,7 @@ public class HttpHelperTest {
         HttpEntity entity = postValue.getEntity();
         assertThat(entity).isInstanceOf(MultipartEntity.class);
 
-        String data = getData((MultipartEntity) entity);
+        String data = getData(entity);
         assertThat(data).contains("Content-Disposition: form-data; name=\"" + NokiaSigner.JAD + "\"; filename=\"" + jad + "\"");
         assertThat(data).contains("Content-Disposition: form-data; name=\"" + NokiaSigner.JAR + "\"; filename=\"" + jar + "\"");
     }
@@ -123,5 +128,12 @@ public class HttpHelperTest {
 
         String sentData = getData(post.getValue().getEntity());
         assertThat(sentData).contains(key + "=" + value);
+    }
+
+    @Test
+    public void shutdownCloseConnections() throws Exception {
+        http.shutdown();
+
+        verify(connections).shutdown();
     }
 }

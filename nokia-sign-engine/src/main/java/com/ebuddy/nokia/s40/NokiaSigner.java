@@ -48,9 +48,11 @@ public class NokiaSigner {
         } catch (SigningException e) {
             System.out.println(e.toString());
             throw e;
-        } finally {
-            http.shutdown();
         }
+    }
+
+    public void shutdown() {
+        http.shutdown();
     }
 
     private void downloadAndSaveJad(String jadFileName) throws IOException, SigningException {
@@ -113,5 +115,7 @@ public class NokiaSigner {
         String jarFileName = args[4];
 
         signer.sign(jadFileName, jarFileName);
+
+        signer.shutdown();
     }
 }

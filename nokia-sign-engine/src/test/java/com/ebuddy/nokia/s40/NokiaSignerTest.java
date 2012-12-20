@@ -36,13 +36,6 @@ public class NokiaSignerTest {
     }
 
     @Test
-    public void closeResourcesAfter() throws Exception {
-        signer.sign(JAD, JAR);
-
-        verify(http).shutdown();
-    }
-
-    @Test
     public void requestedLoginPage() throws Exception {
         signer.sign(JAD, JAR);
 
@@ -86,5 +79,12 @@ public class NokiaSignerTest {
         signer.sign(JAD, JAR);
 
         verify(http).requestAndSaveFile(anyString(), eq(JAD));
+    }
+
+    @Test
+    public void shutdownCallsHttpHelper() throws Exception {
+        signer.shutdown();
+
+        verify(http).shutdown();
     }
 }

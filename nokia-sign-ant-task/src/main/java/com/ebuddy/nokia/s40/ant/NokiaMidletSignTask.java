@@ -36,6 +36,8 @@ public class NokiaMidletSignTask extends Task {
         for (SignBundleType signBundleType : signBundleTypeList) {
             sign(signBundleType, signer);
         }
+
+        signer.shutdown();
     }
 
     private void checkRetryCount() {

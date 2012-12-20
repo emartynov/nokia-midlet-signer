@@ -208,4 +208,11 @@ public class NokiaSignBehaviourTest {
 
         verify(signer, times(2)).sign(JAD, JAR);
     }
+
+    @Test
+    public void whenSigningFinishedShutdownIsCalled() throws Exception {
+        task.execute();
+
+        verify(signer).shutdown();
+    }
 }
