@@ -32,10 +32,10 @@ Please take a look to [`example`][1] folder
 * Download (or build) engine jar. Use jar with dependencies if you don't have `org.apache.HttpClient` in your classpath
 * Run jar file with parameters:
         
-        java -jar nokia-sign-engine-0.9-jar-with-dependencies.jar <host> <username> <password> <jad> <jar>
+        java -jar nokia-sign-engine-0.9-jar-with-dependencies.jar -h <host> -u <username> -p <password> -jad <jad> -jar <jar>
 
 ## TODO
-* Use better parameters specifying for engine call
+* Think about multitasking (using one signer but several simultaneous signing or maybe create several signers in thread pool)
 * Create maven plugin for signing automation
 
   [1]: https://github.com/emartynov/nokia-midlet-signer/tree/master/example

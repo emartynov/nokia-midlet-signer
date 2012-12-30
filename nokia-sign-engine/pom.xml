@@ -1,9 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <properties>
         <project.version>0.9</project.version>
         <httpclient.version>4.2.2</httpclient.version>
+        <args4j.version>2.0.16</args4j.version>
     </properties>
 
     <parent>
@@ -12,24 +13,29 @@
         <version>${project.version}</version>
     </parent>
 
-  <groupId>com.ebuddy.nokia.s40</groupId>
-  <artifactId>nokia-sign-engine</artifactId>
-  <packaging>jar</packaging>
-  <version>${project.version}</version>
-  <name>Nokia MIDlet RD Signer Engine</name>
+    <groupId>com.ebuddy.nokia.s40</groupId>
+    <artifactId>nokia-sign-engine</artifactId>
+    <packaging>jar</packaging>
+    <version>${project.version}</version>
+    <name>Nokia MIDlet RD Signer Engine</name>
 
-  <dependencies>
-      <dependency>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpclient</artifactId>
-          <version>${httpclient.version}</version>
-      </dependency>
-      <dependency>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpmime</artifactId>
-          <version>${httpclient.version}</version>
-      </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>args4j</groupId>
+            <artifactId>args4j</artifactId>
+            <version>${args4j.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
