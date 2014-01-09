@@ -1,6 +1,4 @@
-# MIDlet Signer for Nokia R&amp;D certificate
-# [![Build Status](https://travis-ci.org/emartynov/nokia-midlet-signer.png?branch=master)](https://travis-ci.org/emartynov/nokia-midlet-signer)
-===================
+# MIDlet Signer for Nokia R&amp;D certificate [![Build Status](https://travis-ci.org/emartynov/nokia-midlet-signer.png?branch=master)](https://travis-ci.org/emartynov/nokia-midlet-signer)
 
 ## Briefs
 
